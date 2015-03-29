@@ -1,9 +1,6 @@
 <%= form_for @event, :url => { :controller => 'events', :action => 'update', :id => @event } do |f| %>
-    <%= f.label :name, "書名" %>
-    <%= f.text_field :name %>
+<%= render :partial => 'form', :locals => { :f => f } %>
 
-    <%= f.label :description, "描述" %>
-    <%= f.text_area :description %>
 
-    <%= f.submit "修改" %>
+<%= f.submit "修改" %>
 <% end %>
