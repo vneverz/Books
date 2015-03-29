@@ -1,5 +1,4 @@
-<%= @event.name %>
+<h3><%= @event.name%></h3>
 <%= simple_format(@event.description) %>
 
-
-<p><%= link_to '返回列表', events_path %></p>
+<p><%= link_to 'Back to index', events_path, :class => "btn btn-primary" %></p>
