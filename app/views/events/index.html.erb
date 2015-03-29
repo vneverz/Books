@@ -6,6 +6,6 @@
     <%= button_to 'Delete', event_path(event), :method => :delete %>
   </li>
 <% end %>
-<%= button_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_event_path %>
 <br>
 <%= paginate @events %>
