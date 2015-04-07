@@ -1,16 +1,16 @@
 class EventsController < ApplicationController
-  before_action :set_event, :only => [ :show, :edit, :update, :destroy]
+  before_action :set_event, :only => [:show, :edit, :update, :destroy]
 
   def index
     @events = Event.page(params[:page]).per(4)
   end
 
   def new
-  @event = Event.new
+    @event = Event.new
   end
 
   def create
-  @event = Event.new(event_params)
+    @event = Event.new(event_params)
     if @event.save
       redirect_to events_url
     else
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
     else
       render :action => :edit
     end
-  flash[:notice] = "event was successfully created"
+    flash[:notice] = "event was successfully created"
   end
 
   def destroy
@@ -49,6 +49,9 @@ class EventsController < ApplicationController
   private
 
   def event_params
-  params.require(:event).permit(:name, :description)
+    # Rails.logger.info('==================')
+    # Rails.logger.info(params)
+    # Rails.logger.info('==================')
+    params.require(:event).permit(:name, :description)
   end
 end
