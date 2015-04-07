@@ -1,0 +1,5 @@
+<%= form_for @attendee, :url => event_attendee_path(@event, @attendee), :html => { :method => :patch } do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit '送出', :class => "btn btn-primary"%>
+<% end %>
