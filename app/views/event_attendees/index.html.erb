@@ -1,13 +1,21 @@
-  <ul>
-    <% @attendees.each do |attendee| %>
+<h2><%= @event.name %> 報名列表</h2>
 
-      <li>
-       <h3><%= attendee.name %></h3>
-        <%= link_to '詳細內容', event_attendee_path(@event, attendee)%>
-        <%= link_to '編輯', edit_event_attendee_path(@event, attendee)%>
-        <%= link_to '刪除',event_attendee_path(@event, attendee), :method => :delete %>
-      </li>
-    <% end %>
-  </ul>
 
-<%= link_to '新增參加者', new_event_attendee_path(@event) %>
+<table class="table table-bordered">
+  <% @attendees.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+      <td>
+
+        <%= link_to "詳細頁面", event_attendee_path(@event, a), :class => "btn btn-primary" %>
+
+        <%= link_to "編輯", edit_event_attendee_path(@event, a), :class => "btn btn-primary" %>
+
+        <%= link_to "刪除", event_attendee_path(@event, a), :method => "delete", :class => "btn btn-danger" %>
+
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "新增", new_event_attendee_path(@event), :class => "btn btn-primary" %>

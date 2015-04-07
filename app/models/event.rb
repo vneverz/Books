@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
   validates_presence_of :name
-  has_many :attendees
+
   belongs_to :category
+
+  has_many :attendees, :dependent => :destroy
 end

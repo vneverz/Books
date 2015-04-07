@@ -1,6 +1,5 @@
 <%= form_for @attendee, :url => event_attendees_path(@event) do |f| %>
-   <%= f.label :name %>
-   <%= f.text_field :name %>
 
-   <%= f.submit '送出', :class => "btn btn-primary" %>
+  <%= render :partial => "form", :locals => { :f => f } %>
+
 <% end %>

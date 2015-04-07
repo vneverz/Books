@@ -2,7 +2,18 @@ class EventsController < ApplicationController
   before_action :set_event, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.page(params[:page]).per(4)
+
+    if params[:category_id]
+      @category = Category.find( params[:category_id] )
+      @events = @category.events.page( params[:page] ).per(3)
+    else
+      @events = Event.page( params[:page] ).per(3)
+    end
+
+    @event = Event.new
+
+    @categories = Category.all
+
   end
 
   def new
@@ -52,6 +63,6 @@ class EventsController < ApplicationController
     # Rails.logger.info('==================')
     # Rails.logger.info(params)
     # Rails.logger.info('==================')
-    params.require(:event).permit(:name, :description)
+    params.require(:event).permit(:name, :description, :category_id)
   end
 end

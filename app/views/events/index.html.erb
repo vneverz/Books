@@ -3,16 +3,25 @@
     New event
   <% end %>
 </p>
+<p>
+<% @categories.each do |c| %>
+  <%= link_to c.name, events_path( :category_id => c.id ) %>
+<% end %>
+
+  <%= link_to "All", events_path %>
+</p>
 
 <table class="table table-striped">
 <tr>
   <th>Name</th>
-  <th>Actions</th>
+  <th COLSPAN = "2" >Actions</th>
 </tr>
 <% @events.each do |event| %>
   <tr >
   <td><%= event.name %></td>
+  <td><%= event.category.try(:name) %></td>
   <td><%= link_to 'Show', event_path(event), :class => 'btn btn-success' %>
+  <%= link_to "報名者列表", event_attendees_path(event), :class => "btn btn-primary" %>
   <%= link_to 'Edit', edit_event_path(event), :class => 'btn btn-info' %>
   <%= link_to 'Delete', event_path(event), class: 'btn btn-danger', :method => :delete, :data => { :confirm=> "Are you sure?" }%>
   <%= link_to 'attendees', event_attendees_path(event), class: 'btn btn-default' %>

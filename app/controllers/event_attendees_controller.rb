@@ -1,14 +1,13 @@
 class EventAttendeesController < ApplicationController
 
-before_action :find_event
+before_action :set_event
+
   def index
-    @event = Event.find( params[:event_id])
     @attendees = @event.attendees
   end
 
   def show
-    @event = Event.find( params[:event_id])
-    @attendee = @event.attendees.find(params[:id])
+    @attendee = @event.attendees.find( params[:id] )
   end
 
   def new
@@ -16,44 +15,44 @@ before_action :find_event
   end
 
   def create
-  @attendee = @event.attendees.build( attendee_params )
+    @attendee = @event.attendees.build( attendee_params )
+
     if @attendee.save
-      redirect_to event_attendees_url( @event )
+      redirect_to event_attendees_path(@event)
     else
       render :new
     end
   end
 
   def edit
-    @attendee = @event.attendees.find(params[:id])
+    @attendee = @event.attendees.find( params[:id] )
   end
 
   def update
-    @attendee = @event.attendees.find(params[:id])
+    @attendee = @event.attendees.find( params[:id] )
 
-    if @attendee.update( attendee_params)
-      redirect_to event_attendees_url(@event)
+    if @attendee.update( attendee_params )
+      redirect_to event_attendees_path(@event)
     else
-      render :new
+      render :edit
     end
   end
 
-
   def destroy
     @attendee = @event.attendees.find( params[:id] )
+
     @attendee.destroy
 
-    redirect_to event_attendees_url( @event )
+    redirect_to event_attendees_path(@event)
   end
 
   protected
 
-  def find_event
+  def attendee_params
+    params.require(:attendee).permit(:name, :email)
+  end
+
+  def set_event
     @event = Event.find( params[:event_id] )
   end
-
-  def attendee_params
-  params.require(:attendee).permit(:name)
-  end
-
 end
