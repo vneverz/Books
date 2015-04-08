@@ -3,7 +3,13 @@
 <%= @event.release %>
 <h2>Attendee List</h2>
 
+<p>群組:
+  <% @event.groups.each do |g| %>
+    <%= g.name %>
+  <% end %>
+</p>
 <% @event.attendees.each do |a| %>
   <p><%= a.name %></p>
+
 <% end %>
 <p><%= link_to 'Back to index', events_path, :class => "btn btn-primary" %></p>

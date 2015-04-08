@@ -63,6 +63,6 @@ class EventsController < ApplicationController
     # Rails.logger.info('==================')
     # Rails.logger.info(params)
     # Rails.logger.info('==================')
-    params.require(:event).permit(:name, :description, :category_id)
+    params.require(:event).permit(:name, :description, :category_id, :release, :group_ids => [])
   end
 end
