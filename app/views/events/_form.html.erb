@@ -31,6 +31,17 @@
 <div class="form-group">
  <%= f.date_field :release %>
 </div>
+
+<%= f.fields_for :event_detail do |f2| %>
+
 <div class="form-group">
- <%= I18n.l( Time.now, :format => :short ) %>
+  <%= f2.label :information, "Information" %>
+  <%= f2.text_field :information %>
+
+  <% unless f2.object.new_record? %>
+    <%= f2.label :_destroy, 'Remove:' %>
+    <%= f2.check_box :_destroy %>
+  <% end %>
+
 </div>
+<% end %>

@@ -8,4 +8,5 @@ class Event < ActiveRecord::Base
   has_many :groups, :through => :event_groupships
   # 透過groups來和event_groupships產生關聯
   has_one :event_detail, :dependent => :destroy
+  accepts_nested_attributes_for :event_detail, :allow_destroy => true, :reject_if => :all_blank
 end

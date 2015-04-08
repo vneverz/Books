@@ -52,7 +52,4 @@ before_action :set_event
     params.require(:attendee).permit(:name, :email)
   end
 
-  def set_event
-    @event = Event.find( params[:event_id] )
-  end
 end
