@@ -7,4 +7,5 @@ class Event < ActiveRecord::Base
   has_many :event_groupships
   has_many :groups, :through => :event_groupships
   # 透過groups來和event_groupships產生關聯
+  has_one :event_detail, :dependent => :destroy
 end
