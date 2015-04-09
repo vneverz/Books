@@ -1,6 +1,6 @@
 class EventAttendeesController < ApplicationController
 
-before_action :set_event
+before_action :set_event, :authenticate_user!
 
   def index
     @attendees = @event.attendees

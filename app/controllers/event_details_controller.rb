@@ -1,5 +1,5 @@
 class EventDetailsController < ApplicationController
-  before_action :set_event
+  before_action :set_event, :authenticate_user!
 
   def show
     @detail = @event.event_detail
