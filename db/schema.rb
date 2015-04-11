@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20150409022351) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "attendees", ["event_id"], name: "index_attendees_on_event_id"
+
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.text     "bio"
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150409022351) do
     t.datetime "updated_at",  null: false
     t.string   "status"
     t.date     "release"
+    t.string   "email"
     t.integer  "category_id"
   end
 
