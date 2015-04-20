@@ -39,6 +39,11 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
+      if params[:destroy_logo]
+        @event.logo = nil
+        @event.save
+      end
+      flash[:notice] = "編輯成功"
       redirect_to events_url(@event)
     else
       render :action => :edit
@@ -63,6 +68,6 @@ class EventsController < ApplicationController
     # Rails.logger.info('==================')
     # Rails.logger.info(params)
     # Rails.logger.info('==================')
-    params.require(:event).permit(:name, :description, :category_id, :release, :event_detail_attributes => [:information, :_destroy, :id], :group_ids => [])
+    params.require(:event).permit(:name, :description, :category_id, :release, :logo, :event_detail_attributes => [:information, :_destroy, :id], :group_ids => [])
   end
 end
