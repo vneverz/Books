@@ -1,9 +1,11 @@
 <h3><%= @event.name%></h3>
+
 <% if @event.logo.exists? %>
 
   <%= image_tag( @event.logo(:thumb) ) %>
 
 <% end %>
+
 <%= simple_format(@event.description) %>
 <%= @event.release %>
 <h2>Attendee List</h2>

@@ -34,8 +34,13 @@
  <div class="form-group">
   <%= f.label :logo, "LOGO檔案" %>
   <%= f.file_field :logo %>
+<!--  用下面方法會預設塞一個hidden值為0-->
+  <%#= f.check_box :_destory_logo %>
 
   <%= check_box_tag "destroy_logo", "1" %> 刪除檔案
+
+  移除照片
+
 </div>
 
 <%= f.fields_for :event_detail do |f2| %>
